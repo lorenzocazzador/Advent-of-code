@@ -30,13 +30,19 @@ main() {
               String s = num.toString();
               bool twoAdiacent = false;
 
-              for(int i=1; i<6; i++) {
-                if(s[i-1] == s[i])
+              for(int i=0; i<6; i++) {
+                if(i>1 && i<5 && s[i-1] == s[i] && s[i-1] != s[i-2] &&  s[i] != s[i+1])
+                  twoAdiacent = true;
+                else if(i == 5 && s[i] == s[i-1] && s[i-1] != s[i-2])
+                  twoAdiacent = true;
+                else if(i == 0 && s[i]==s[i+1] && s[i+1] != s[i+2])
                   twoAdiacent = true;
               }
 
-              if(!twoAdiacent)
+              if(!twoAdiacent) {
+                print('$num\n');
                 continue;
+              }
 
               res++;
             }

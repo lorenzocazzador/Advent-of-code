@@ -1,12 +1,16 @@
 import 'dart:io';
 import 'dart:math';
 
-int intcode_computer(int phase, int input, List l2) {
-  int i = 0, lastOutput = -1, nInput = 0;
+import '../2-dic/2.dart';
+
+bool halted = false;
+
+List intcode_computer(int index, int phase, int input, List l2) {
+  int i = index, lastOutput = -1, nInput = 0;
+  bool init = (i == 0);
   while(i < l2.length) {
     int op = l2[i] % 100, p1 = l2[i] ~/ 100 % 10, p2 = l2[i] ~/ 1000 % 10, p3 = l2[i] ~/ 10000;
     //print('${l2[i]} --> $op -> $p1 $p2 $p3') ;
-    
     if(op == 1) {
       int v1 = p1==1 ? l2[i+1] : l2[l2[i+1]],
           v2 = p2==1 ? l2[i+2] : l2[l2[i+2]],
@@ -27,7 +31,7 @@ int intcode_computer(int phase, int input, List l2) {
       //print('letto');
       int inp;
       if(nInput == 0) {
-        inp = phase;
+        inp = init ? phase : input;
         nInput++;
       }else if(nInput == 1) {
         inp = input;
@@ -41,8 +45,9 @@ int intcode_computer(int phase, int input, List l2) {
       int v1 = p1==1 ? l2[i+1] : l2[l2[i+1]];
       //print('op4: i --> $i l2[i] -> ${l2[i]}');
       //print('op4: $v1');
-      lastOutput = v1;
       i += 2;
+      lastOutput = v1;
+      return [v1, i];
     } else if(op == 5) {
       int v1 = p1==1 ? l2[i+1] : l2[l2[i+1]],
           v2 = p2==1 ? l2[i+2] : l2[l2[i+2]];
@@ -79,17 +84,34 @@ int intcode_computer(int phase, int input, List l2) {
       i += 4;
     } else if(op == 99) 
       break;
+    else 
+      print('ERROR: opcode=$op not found');
   }
 
-  return lastOutput;
+  halted = true;
+  return [lastOutput, i];
 }
 
 int solve(List phases, List l2) {
   int prevOut = 0;
-  for(int p in phases) {
-    List l3 = l2.toList();
-    prevOut = intcode_computer(p, prevOut, l3);
+  List states = [], index = [];
+  for(int i=0; i<phases.length; i++) {
+    states.add(l2.toList());
+    index.add(0);
   }
+
+  halted = false;
+  while(!halted) {
+    //print('entro $halted');
+    for(int i=0; i<phases.length; i++) {
+      List res = intcode_computer(index[i], phases[i], prevOut, states[i]);
+      //print('\tres: $res[0]');
+      prevOut = res[0] != -1 ? res[0] : prevOut;
+      index[i] = res[1];
+    }
+    //print('esco $halted\n');
+  }
+
   return prevOut;
 }
 
@@ -117,7 +139,7 @@ main() {
   List<int> l2 = l.map(int.parse).toList();
 
   int maxRes = 0;
-  for(List x in getPermutations([0,1,2,3,4]))
+  for(List x in getPermutations([5,6,7,8,9]))
     maxRes = max(maxRes, solve(x, l2));
   print('res --> $maxRes');
 }
