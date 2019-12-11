@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'dart:math';
 
-import '../2-dic/2.dart';
-
 bool halted = false;
 
 List intcode_computer(int index, int phase, int input, List l2) {
