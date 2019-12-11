@@ -1,10 +1,18 @@
+import 'dart:collection';
 import 'dart:io';
 import 'dart:math';
+
+int compare(Point a, Point b) {
+  if(a.y != b.y)
+    return a.y > b.y ? -1 : 1;
+  else 
+    return a.x == b.x ? 0 : (a.x < b.x ? -1 : 1);
+}
 
 Map<int, int> m = {};
 int relativeBase;
 Point robot = Point(0,0);
-Map<Point, int> points = {};
+SplayTreeMap<Point, int> points = SplayTreeMap(compare);
 int verso = 0;
 
 int getM(int index) {
@@ -102,6 +110,7 @@ void intcode_computer(int length) {
           robot = Point(robot.x, robot.y-1);
         else if(verso == 3)
           robot = Point(robot.x-1, robot.y);
+        else print('ERROR: verso=$verso not in range [0,3]');
       }
       output++;
       output %= 2;
@@ -175,7 +184,35 @@ main() async {
   for(int i=0; i<l.length; i++) 
     m[i] = l[i];
 
+  points[Point(0,0)] = 1;
   intcode_computer(m.length);
 
-  print('res --> ${points.keys.length}');
+  print('points colorated --> ${points.keys.length}');
+
+  int offsetY = 0, maxY = -10000, offsetX = 0, maxX = -10000; 
+  points.forEach( (p, c){
+    offsetX = min(offsetX, p.x);
+    maxX = max(maxX, p.x);
+    offsetY = min(offsetY, p.y);
+    maxY = max(maxY, p.y);
+  });
+  offsetY = offsetY.abs();
+  offsetX = offsetX.abs();
+
+  List<List<String>> res = [];
+  for(int i=0; i<=maxY+offsetY; i++) {
+    res.add([]);
+    for(int j=0; j<=maxX+offsetX; j++)
+      res[i].add(' ');
+  }
+
+  points.forEach( (p,c) {
+    res[p.y+offsetY][p.x+offsetX] = c == 1 ? '#' : ' ';
+  });
+
+  for(List<String> ls in res) {
+    for(String s in ls)
+      stdout.write(s);
+    print('');
+  }
 }
