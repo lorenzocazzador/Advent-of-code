@@ -17,18 +17,44 @@ Chemical parseChemical(String c) {
 
 class MapKey{
   int qOutput;
-  List<Chemical> c;
+  List<Chemical> chemicals;
 
-  MapKey(this.qOutput, this.c);
+  MapKey(this.qOutput, this.chemicals);
 }
 
 Map<String, MapKey> m = {};
+Map<String, int> disp = {};
 
 int solve(int q, String n) {
   if(n == 'ORE')
     return q;
   else {
+    MapKey tmp = m[n];
 
+    int v = q ~/ tmp.qOutput;
+    if(q % tmp.qOutput != 0) v++;
+
+    int res = 0;
+    for(Chemical c in tmp.chemicals) {
+      int q_tmp = c.quantity*v;
+      if(disp.containsKey(c.name)) {
+        int d = disp[c.name];
+        disp[c.name] = (d <= q_tmp ? 0 : d-q_tmp);  
+        q_tmp -= d;
+      } 
+      
+      if(q_tmp > 0)
+        res += solve(q_tmp, c.name);
+    }
+
+    if(!disp.containsKey(n))
+      disp[n] = 0;
+
+    if(q % tmp.qOutput > 0)
+      disp[n] += tmp.qOutput - (q % tmp.qOutput);
+
+    //print('n: $n res: $res disp: ${disp[n]}');
+    return res;
   }
 }
 
@@ -47,6 +73,7 @@ main() async {
     m[r.name] = MapKey(r.quantity, c); 
   }
 
-  int res = solve(1, 'FUEL');
-  print('res --> $res');
+  int x = 7863863;
+  int res = solve(x, 'FUEL');
+  print('x: $x res --> $res');
 }
