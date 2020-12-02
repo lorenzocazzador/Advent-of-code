@@ -5,5 +5,5 @@ for l in sys.stdin.read().strip().split('\n'):
     v  = list(map(int,x[0].split('-')))
     c = x[1][0]
     w = x[2]
-    ans += w.count(c) >= v[0] and w.count(c) <= v[1]
+    ans += (w[v[0]-1] == c) ^ (w[v[1]-1] == c)
 print(ans)
