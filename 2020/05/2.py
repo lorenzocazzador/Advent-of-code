@@ -4,7 +4,11 @@ def getSeatID(s):
     return int(r, 2) * 8 + int(c, 2)
 
 import sys
-ans = 0
+ids = []
 for l in sys.stdin.read().strip().split('\n'):
-    ans = max(ans, getSeatID(l))
-print(ans)
+    ids.append(getSeatID(l))
+ids.sort()
+for i in range(len(ids)):
+    x = ids[0] + i
+    if x not in ids and x - 1 in ids and x + 1 in ids:
+        print(x)
