@@ -4,12 +4,11 @@ preamble_length = 25
 d = []
 for i in range(len(l)):
     if i >= preamble_length:
-        p = 0
+        p = False
         for x in d:
             t = l[i] - x
-            if t != l[i] and t in d:
-                p = 1
-        if p == 0:
+            p |= (t != l[i] and t in d)
+        if not p:
             print(l[i])
             break
         d.remove(l[i-preamble_length])
