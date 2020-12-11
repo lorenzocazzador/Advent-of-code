@@ -1,14 +1,23 @@
 import sys
 l = sys.stdin.read().strip().split('\n')
 
+def ins(i, j):
+    return i >= 0 and i < len(l) and j >= 0 and j < len(l[0])
+
+def iterate(i, j , di, dj):
+    ans = 0
+    while ins(i+di, j+dj) and l[i+di][j+dj] != 'L':
+        i += di
+        j += dj
+        ans |= l[i][j] == '#'
+    return ans
+
 def countAdj(i, j):
     c = 0
-    for x in {-1, 0, 1}:
-        for y in {-1, 0, 1}:
-            if x == 0 and y == 0:
-                continue
-            if i+x >= 0 and i+x < len(l) and j+y >= 0 and j+y < len(l[0]):
-                c += l[i+x][j+y] == '#'
+    for dx in {-1, 0, 1}:
+        for dy in {-1, 0, 1}:
+            if not (dx == 0 and dy == 0):
+                c += iterate(i, j, dx, dy)
     return c
 
 change = True
@@ -24,7 +33,7 @@ while change:
                 s += '#'
                 ans += 1
                 change = True
-            elif l[i][j] == '#' and a >= 4:
+            elif l[i][j] == '#' and a >= 5:
                 s += 'L'
                 ans -= 1
                 change = True
