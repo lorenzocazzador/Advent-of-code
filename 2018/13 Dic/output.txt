@@ -1,0 +1,113 @@
+size iniziale: 17
+da eliminare:
+143 43
+
+107 6
+99 16
+4 25
+69 32
+82 49
+148 56
+43 60
+100 64
+108 83
+61 103
+98 110
+37 117
+104 124
+14 128
+41 129
+
+size finale: 15
+size iniziale: 15
+da eliminare:
+92 38
+
+87 15
+0 26
+52 44
+63 51
+142 69
+117 76
+79 94
+122 98
+49 100
+27 112
+54 113
+81 118
+88 137
+
+size finale: 13
+size iniziale: 13
+da eliminare:
+60 59
+
+107 3
+89 10
+63 34
+21 41
+145 56
+31 60
+43 69
+10 84
+37 106
+62 137
+71 149
+
+size finale: 11
+size iniziale: 11
+da eliminare:
+17 18
+
+108 6
+95 30
+105 40
+52 41
+100 50
+12 71
+38 80
+46 121
+43 121
+
+size finale: 9
+size iniziale: 9
+da eliminare:
+60 59
+
+128 7
+52 19
+134 22
+120 78
+37 102
+27 101
+84 119
+
+size finale: 7
+size iniziale: 7
+da eliminare:
+70 64
+
+130 32
+105 36
+70 71
+23 124
+125 146
+
+size finale: 5
+size iniziale: 5
+da eliminare:
+43 128
+
+86 16
+109 17
+27 103
+
+size finale: 3
+size iniziale: 3
+da eliminare:
+37 114
+
+116 125
+
+size finale: 1
+116,125
