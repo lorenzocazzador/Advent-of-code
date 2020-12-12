@@ -1,5 +1,0 @@
-i: 23 marble: 9
-i: 46 marble: 17
-i: 69 marble: 11
-i: 92 marble: 15
-107
