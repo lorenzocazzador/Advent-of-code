@@ -2,8 +2,8 @@
 using namespace std;
 
 int main(){
-    freopen("input.txt","r",stdin);
-    //freopen("output.txt", "w",stdout);
+    freopen("input/in.txt","r",stdin);
+    freopen("output/out2.txt", "w",stdout);
 
     int n, res = 0, i = 0, M = 0;
     set<int> s; vector<int> v (2000);

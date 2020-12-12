@@ -7,7 +7,7 @@ pair<bool, bool> conta(string s){
     pair<bool, bool> r = {false, false};
     int occ[50], cont2 = 0, cont3 = 0;
     fill(occ, occ+50, 0);
-    for(int i=0; i<s.size(); i++){
+    for(int i=0; i<(int)s.size(); i++){
         int c = ++occ[s[i] - 'a'];
         if(c == 2) cont2++;
         else if(c == 3){ cont2--; cont3++; }
@@ -20,7 +20,8 @@ pair<bool, bool> conta(string s){
 }
 
 int main(){
-    freopen("input.txt", "r", stdin);
+    freopen("input/in.txt", "r", stdin);
+    freopen("output/out1.txt", "w", stdout);
 
     string s; int i = 0;
     while(cin >> s) str[i++] = s;

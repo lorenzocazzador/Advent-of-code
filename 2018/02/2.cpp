@@ -9,7 +9,7 @@ typedef pair<int, string> pis;
 
 pis diff(string s1, string s2){
     pis r = { 0 , "" };
-    for(int i=0; i<s1.size(); i++){
+    for(int i=0; i<(int)s1.size(); i++){
         if(s1[i] != s2[i]) r.F++;
         else r.S += s1[i];
     }
@@ -18,7 +18,8 @@ pis diff(string s1, string s2){
 }
 
 int main(){
-    freopen("input.txt", "r", stdin);
+    freopen("input/in.txt", "r", stdin);
+    freopen("output/out2.txt", "w", stdout);
 
     string s; int i = 0;
     while(cin >> s) str[i++] = s;
