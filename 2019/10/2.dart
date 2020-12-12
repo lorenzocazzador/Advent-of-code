@@ -5,18 +5,18 @@ import 'dart:math';
 List<Point> l = [];
 
 int findStation(Point p) {
-  Map<double, List<bool>> m = {}; 
+  Map<double, List<bool>> m = {};
   for(Point x in l) {
     if(x != p) {
       bool up = (x.y != p.y ? x.y > p.y : x.x > p.x);
       double slope = (p.x-x.x)/(p.y-x.y);
-      
+
       if(!m.containsKey(slope))
         m[slope] = [false, false];
 
       if(up)
         m[slope][0] = true;
-      else 
+      else
         m[slope][1] = true;
     }
   }
@@ -35,7 +35,7 @@ class PointSlope{
   PointSlope(this.slope, this.right);
 
   String toString() {
-    return '[' + slope.toString() + ', ' + right.toString() + ']'; 
+    return '[' + slope.toString() + ', ' + right.toString() + ']';
   }
 }
 
@@ -44,12 +44,12 @@ int compare(PointSlope a, PointSlope b) {
     return 0;
 
   if(a.right != b.right)
-    return a.right ? -1 : 1; 
+    return a.right ? -1 : 1;
   else if(a.slope == 0 || b.slope == 0)
     return a.slope == 0 ? -1 : 1;
   else if((a.slope < 0 && b.slope > 0) || (a.slope > 0 && b.slope < 0))
     return a.slope < 0 ? -1 : 1;
-  else 
+  else
     return a.slope > b.slope ? -1 : 1;
 }
 
@@ -74,9 +74,9 @@ int solve(Point p) {
       double slope = (p.x-x.x)/(p.y-x.y);
 
       PointSlope ps = PointSlope(slope, right);
-      if(!m.containsKey(ps)) 
+      if(!m.containsKey(ps))
         m[ps] = SplayTreeSet(compare2);
-      
+
       m[ps].add(x);
 
       //if(p == Point(1,1))
@@ -87,7 +87,7 @@ int solve(Point p) {
   int i = 0;
   bool finish = false;
   Point res;
-  
+
   while(!finish && i<200) {
     bool tmp_f = true;
     m.forEach((ps, l2){
@@ -98,10 +98,10 @@ int solve(Point p) {
 
         if(i <= 200)
           res = pf;
-        
+
         if(tmp_f)
           tmp_f = (l2.length == 0);
-      } 
+      }
     });
     finish = tmp_f;
   }
@@ -123,7 +123,7 @@ main() {
   while(true) {
     String s = stdin.readLineSync();
 
-    if(s == '')
+    if(s == null || s == '')
       break;
 
     for(int j=0; j<s.length; j++)

@@ -4,7 +4,7 @@ int width = 25;
 int high = 6;
 
 main() async {
-  String l = await File('in').readAsString();
+  String l = await File('input/in').readAsString();
   //String l = stdin.readLineSync();
 
   int layerLength = width*high;

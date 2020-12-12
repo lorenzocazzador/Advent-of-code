@@ -47,14 +47,14 @@ List<int> runPhase(List<int> input) {
 }
 
 main() async {
-  String s = await File('16-dic/in').readAsString();
+  String s = await File('input/in').readAsString();
 
   List<int> input = [];
-  
+
   for(int i=0; i<s.length; i++)
     input.add(int.parse(s[i]));
 
-  for(int i=0; i<nPhases; i++) 
+  for(int i=0; i<nPhases; i++)
     input = runPhase(input);
 
   for(int i=0; i<8; i++)

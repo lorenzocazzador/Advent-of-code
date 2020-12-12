@@ -6,15 +6,15 @@ Map<String,List<String>> m = {};
 main() {
   while(true) {
     String s = stdin.readLineSync();
-    
-    if(s == '')
+
+    if(s == null || s == '')
       break;
-    
+
     List<String> l = s.split(')');
-    
+
     if(!m.containsKey(l[0])) {
       m[l[0]] = [];
-    } 
+    }
     m[l[0]].add(l[1]);
   }
 

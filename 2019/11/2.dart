@@ -5,7 +5,7 @@ import 'dart:math';
 int compare(Point a, Point b) {
   if(a.y != b.y)
     return a.y > b.y ? -1 : 1;
-  else 
+  else
     return a.x == b.x ? 0 : (a.x < b.x ? -1 : 1);
 }
 
@@ -18,7 +18,7 @@ int verso = 0;
 int getM(int index) {
   if(m.containsKey(index))
     return m[index];
-  else 
+  else
     return m[index] = 0;
 }
 
@@ -54,7 +54,7 @@ void intcode_computer(int length) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2),
           v3 = (p3 == 0 ? m[i+3] : m[i+3]+relativeBase);
-      
+
       m[v3] = v1 * v2;
       i+=4;
     } else if(op == 3) {
@@ -126,7 +126,7 @@ void intcode_computer(int length) {
     } else if(op == 6) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2);
-      
+
       //print(' $v1 $v2');
 
       if(v1 == 0)
@@ -141,16 +141,16 @@ void intcode_computer(int length) {
 
       if(v1 < v2)
         m[v3] = 1;
-      else 
-        m[v3] = 0;   
+      else
+        m[v3] = 0;
 
-      i += 4;   
+      i += 4;
     } else if(op == 8) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2),
           v3 = (p3 == 0 ? m[i+3] : m[i+3]+relativeBase);
 
-      
+
       //print(' $v1 $v2 $v3');
 
       if(v1 == v2)
@@ -177,11 +177,11 @@ void intcode_computer(int length) {
 
 main() async {
   //List<int> l = stdin.readLineSync().split(',').map(int.parse).toList();
-  String file = await File('./11-dic/in').readAsString();
+  String file = await File('input/in').readAsString();
   List<int> l = file.split(',').map(int.parse).toList();
 
   print('LENGTH INTCODE: ${l.length}');
-  for(int i=0; i<l.length; i++) 
+  for(int i=0; i<l.length; i++)
     m[i] = l[i];
 
   points[Point(0,0)] = 1;
@@ -189,7 +189,7 @@ main() async {
 
   print('points colorated --> ${points.keys.length}');
 
-  int offsetY = 0, maxY = -10000, offsetX = 0, maxX = -10000; 
+  int offsetY = 0, maxY = -10000, offsetX = 0, maxX = -10000;
   points.forEach( (p, c){
     offsetX = min(offsetX, p.x);
     maxX = max(maxX, p.x);
@@ -210,8 +210,8 @@ main() async {
     res[p.y+offsetY][p.x+offsetX] = c == 1 ? '#' : ' ';
   });
 
-  for(List<String> ls in res) {
-    for(String s in ls)
+  for(int i = res.length-1; i >= 0; i--) {
+    for(String s in res[i])
       stdout.write(s);
     print('');
   }

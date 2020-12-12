@@ -38,13 +38,9 @@ main() {
                 else if(i == 0 && s[i]==s[i+1] && s[i+1] != s[i+2])
                   twoAdiacent = true;
               }
-
-              if(!twoAdiacent) {
-                print('$num\n');
-                continue;
-              }
-
-              res++;
+              
+				  if(twoAdiacent)
+	              res++;
             }
 
   print('res --> $res');

@@ -10,7 +10,7 @@ int verso = 0;
 int getM(int index) {
   if(m.containsKey(index))
     return m[index];
-  else 
+  else
     return m[index] = 0;
 }
 
@@ -46,7 +46,7 @@ void intcode_computer(int length) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2),
           v3 = (p3 == 0 ? m[i+3] : m[i+3]+relativeBase);
-      
+
       m[v3] = v1 * v2;
       i+=4;
     } else if(op == 3) {
@@ -117,7 +117,7 @@ void intcode_computer(int length) {
     } else if(op == 6) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2);
-      
+
       //print(' $v1 $v2');
 
       if(v1 == 0)
@@ -132,16 +132,16 @@ void intcode_computer(int length) {
 
       if(v1 < v2)
         m[v3] = 1;
-      else 
-        m[v3] = 0;   
+      else
+        m[v3] = 0;
 
-      i += 4;   
+      i += 4;
     } else if(op == 8) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2),
           v3 = (p3 == 0 ? m[i+3] : m[i+3]+relativeBase);
 
-      
+
       //print(' $v1 $v2 $v3');
 
       if(v1 == v2)
@@ -168,11 +168,11 @@ void intcode_computer(int length) {
 
 main() async {
   //List<int> l = stdin.readLineSync().split(',').map(int.parse).toList();
-  String file = await File('./11-dic/in').readAsString();
+  String file = await File('input/in').readAsString();
   List<int> l = file.split(',').map(int.parse).toList();
 
   print('LENGTH INTCODE: ${l.length}');
-  for(int i=0; i<l.length; i++) 
+  for(int i=0; i<l.length; i++)
     m[i] = l[i];
 
   intcode_computer(m.length);

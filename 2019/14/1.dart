@@ -39,10 +39,10 @@ int solve(int q, String n) {
       int q_tmp = c.quantity*v;
       if(disp.containsKey(c.name)) {
         int d = disp[c.name];
-        disp[c.name] = (d <= q_tmp ? 0 : d-q_tmp);  
+        disp[c.name] = (d <= q_tmp ? 0 : d-q_tmp);
         q_tmp -= d;
-      } 
-      
+      }
+
       if(q_tmp > 0)
         res += solve(q_tmp, c.name);
     }
@@ -59,7 +59,7 @@ int solve(int q, String n) {
 }
 
 main() async {
-  List<String> file = await File('14-dic/in').readAsLines();
+  List<String> file = await File('input/in').readAsLines();
   for(String s in file) {
     List<String> l = s.split(' => ');
 
@@ -70,7 +70,7 @@ main() async {
       c.add(parseChemical(s1));
 
     //print('$c --> $r');
-    m[r.name] = MapKey(r.quantity, c); 
+    m[r.name] = MapKey(r.quantity, c);
   }
 
   int x = 7863863;

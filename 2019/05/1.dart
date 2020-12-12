@@ -25,8 +25,7 @@ main() {
       i+=4;
     } else if(op == 3) {
       i += 2;
-      print('op3, input: ');
-      int inp = int.parse(stdin.readLineSync());
+      int inp = 1;
       l2[l2[i+1]] = inp;
     } else if(op == 4) {
       print('op4: ${l2[l2[i+1]]}');

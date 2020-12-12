@@ -4,18 +4,18 @@ import 'dart:math';
 List<Point> l = [];
 
 int solve(Point p) {
-  Map<double, List<bool>> m = {}; 
+  Map<double, List<bool>> m = {};
   for(Point x in l) {
     if(x != p) {
       bool up = (x.y != p.y ? x.y > p.y : x.x > p.x);
       double slope = (p.x-x.x)/(p.y-x.y);
-      
+
       if(!m.containsKey(slope))
         m[slope] = [false, false];
 
       if(up)
         m[slope][0] = true;
-      else 
+      else
         m[slope][1] = true;
     }
   }
@@ -32,7 +32,7 @@ main() {
   while(true) {
     String s = stdin.readLineSync();
 
-    if(s == '')
+    if(s == null || s == '')
       break;
 
     for(int j=0; j<s.length; j++)

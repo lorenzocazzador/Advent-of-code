@@ -1,7 +1,7 @@
 import 'dart:io';
 
 main() async {
-  String l = await File('in').readAsString();
+  String l = await File('input/in').readAsString();
 
   int layerLength = 25*6;
   int n0 = 0, n1 = 0, n2 = 0;
@@ -15,7 +15,7 @@ main() async {
     else if(l[i] == '2')
       n2++;
 
-    
+
     if( (i+1) % layerLength == 0) {
       if(min0 == null || n0 < min0) {
         min0 = n0;

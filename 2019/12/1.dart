@@ -6,7 +6,7 @@ class Pos{
   Pos(this.x, this.y, this.z);
 
   String toString() {
-    return '(' + x.toString() + ',' + y.toString() + ',' + z.toString() + ')'; 
+    return '(' + x.toString() + ',' + y.toString() + ',' + z.toString() + ')';
   }
 }
 

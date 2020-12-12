@@ -13,7 +13,7 @@ import 'dart:math';
 int compare(Point a, Point b) {
   if(a.y != b.y)
     return a.y < b.y ? -1 : 1;
-  else 
+  else
     return a.x == b.x ? 0 : (a.x < b.x ? -1 : 1);
 }
 
@@ -21,7 +21,7 @@ Map<int, int> m = {};
 int relativeBase;
 SplayTreeMap<Point, int> points = SplayTreeMap(compare);
 Point paddle, ball, dirBall = Point(1,1), posPrec, np;
-File out = File('13-dic/out');
+File out = File('output/out1');
 String joystickMoves;
 
 void printTable() {
@@ -51,7 +51,7 @@ void printTable() {
     else if(t == 2) s = '*';
     else if(t == 3) s = '-';
     else if(t == 4) s = '@';
-    
+
     //print('x: ${maxX+offsetX}');
     table[p.y][p.x] = s;
   });
@@ -75,7 +75,7 @@ Point findBallNextPos() {
       Point sx = Point(nextPos.x-1, nextPos.y);
       if(points[sx] == 1)
         dirBall = Point(-dirBall.x, dirBall.y);
-      
+
       Point dx = Point(nextPos.x+1, nextPos.y);
       if(points[dx] == 1)
         dirBall = Point(-dirBall.x, dirBall.y);
@@ -126,7 +126,7 @@ void findPaddleAndBall() {
 int getM(int index) {
   if(m.containsKey(index))
     return m[index];
-  else 
+  else
     return m[index] = 0;
 }
 
@@ -145,7 +145,7 @@ int getValue(int parameterMode, int index) {
 }
 
 void intcode_computer(int length) {
-  
+
   int i = 0, output = 0, x, y, indexMoves = 0;
   relativeBase = 0;
   bool firstInput = false;
@@ -172,7 +172,7 @@ void intcode_computer(int length) {
 
       if(indexMoves < joystickMoves.length) {
         String move = joystickMoves[indexMoves];
-        inp = move == '-' ? 0 : (move == '<' ? -1 : 1); 
+        inp = move == '-' ? 0 : (move == '<' ? -1 : 1);
         do{
           indexMoves++;
         }while(indexMoves < joystickMoves.length && joystickMoves[indexMoves] == '@');
@@ -186,7 +186,7 @@ void intcode_computer(int length) {
         if(paddle.y-ball.y >= 7)
           byte = 50;
         else {
-          firstInput = true; 
+          firstInput = true;
           print('op3, input: ');
           stdin.lineMode = false;
           byte = stdin.readByteSync();
@@ -244,7 +244,7 @@ void intcode_computer(int length) {
           //if(firstInput) printTable();
         }
       }
-      
+
       output++;
       output %= 3;
       i += 2;
@@ -267,10 +267,10 @@ void intcode_computer(int length) {
 
       if(v1 < v2)
         m[v3] = 1;
-      else 
-        m[v3] = 0;   
+      else
+        m[v3] = 0;
 
-      i += 4;   
+      i += 4;
     } else if(op == 8) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2),
@@ -287,7 +287,7 @@ void intcode_computer(int length) {
 
       relativeBase += v1;
       i += 2;
-    } else if(op == 99) 
+    } else if(op == 99)
       break;
   }
 
@@ -295,15 +295,15 @@ void intcode_computer(int length) {
 }
 
 main() async {
-  String file = await File('13-dic/in').readAsString();
+  String file = await File('input/in').readAsString();
   joystickMoves = await out.readAsString();
   List<int> l = file.split(',').map(int.parse).toList();
 
   l[0] = 2;
-  for(int i=0; i<l.length; i++) 
+  for(int i=0; i<l.length; i++)
     m[i] = l[i];
 
-  print('length: ${l.length}');  
+  print('length: ${l.length}');
   intcode_computer(l.length);
 
 

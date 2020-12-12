@@ -6,30 +6,30 @@ Map<String,List<String>> m = {};
 main() {
   while(true) {
     String s = stdin.readLineSync();
-    
-    if(s == '')
+
+    if(s == null || s == '')
       break;
-    
+
     List<String> l = s.split(')');
-    
+
     if(!m.containsKey(l[0])) {
       m[l[0]] = [];
-    } 
+    }
     m[l[0]].add(l[1]);
 
     if(!m.containsKey(l[1])) {
       m[l[1]] = [];
-    } 
+    }
     m[l[1]].add(l[0]);
   }
 
   Queue<List<dynamic>> q = Queue();
-  Set<String> visited = {}; 
+  Set<String> visited = {};
   int res = 0;
   q.add(['YOU',0]);
   while(q.isNotEmpty) {
     List<dynamic> s = q.removeFirst();
-    
+
     if(visited.contains(s[0]))
       continue;
     else visited.add(s[0]);

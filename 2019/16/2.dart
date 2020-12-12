@@ -43,17 +43,17 @@ List<int> runPhase(List<int> input) {
 }
 
 main() async {
-  String s1 = await File('16-dic/in').readAsString();
+  String s1 = await File('input/in').readAsString();
   String s = '';
   for(int i=0; i<10000; i++)
     s += s1;
-    
+
   List<int> input = [];
-  
+
   for(int i=0; i<s.length; i++)
     input.add(int.parse(s[i]));
 
-  for(int i=0; i<nPhases; i++) 
+  for(int i=0; i<nPhases; i++)
     input = runPhase(input);
 
   String offset = '';

@@ -6,7 +6,7 @@ int relativeBase;
 int getM(int index) {
   if(m.containsKey(index))
     return m[index];
-  else 
+  else
     return m[index] = 0;
 }
 
@@ -45,11 +45,7 @@ void intcode_computer(int length) {
       m[v3] = v1 * v2;
       i+=4;
     } else if(op == 3) {
-      print('op3, input: ');
-      int inp = int.parse(stdin.readLineSync());
-      print('letto');
-
-      int index;
+      int inp = 1, index;
       if(p1 == 0)
         index = m[i+1];
       else if(p1 == 2)
@@ -82,10 +78,10 @@ void intcode_computer(int length) {
 
       if(v1 < v2)
         m[v3] = 1;
-      else 
-        m[v3] = 0;   
+      else
+        m[v3] = 0;
 
-      i += 4;   
+      i += 4;
     } else if(op == 8) {
       int v1 = getValue(p1, i+1),
           v2 = getValue(p2, i+2),
@@ -102,7 +98,7 @@ void intcode_computer(int length) {
 
       relativeBase += v1;
       i += 2;
-    } else if(op == 99) 
+    } else if(op == 99)
       break;
   }
 
@@ -112,7 +108,7 @@ void intcode_computer(int length) {
 main() {
   List<int> l = stdin.readLineSync().split(',').map(int.parse).toList();
 
-  for(int i=0; i<l.length; i++) 
+  for(int i=0; i<l.length; i++)
     m[i] = l[i];
 
   intcode_computer(l.length);
