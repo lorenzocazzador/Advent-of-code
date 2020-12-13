@@ -1,0 +1,10 @@
+#!/bin/bash
+for i in {5..9}
+do 
+    freopen("input/in.txt", "r", stdin);
+    
+        freopen("output/out1.txt", "w", stdout);
+        
+             
+    mv 0$i/2/AoC_"$i"Dic_2.cpp 0$i/2.cpp
+done
