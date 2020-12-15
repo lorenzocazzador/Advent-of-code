@@ -1,6 +1,6 @@
 import sys
 l = list(map(int, sys.stdin.read().strip().split(',')))
-n = 2020
+n = 30000000
 map = [-1] * n
 for i, x in enumerate(l):
     if i != len(l)-1:
